@@ -2,17 +2,16 @@ package main
 
 // Hw 는 데스크탑, 노트북등의 하드웨어 관리를 위한 자료구조이다.
 type Hw struct {
-	Typ          string  // 타입
-	CreateDate   string  // 생성일
-	Product      string  // 제품명
-	Owner        string  // 관리자
-	State        string  // 상태
-	User         string  // 사용자
-	Sn           string  // 시리얼넘버
-	Price        float64 // 가격
-	PurchaseDate string  // 구매일
-	MonetaryUnit string  // 가격단위
-	Description  string  // 설명
+	Typ           string  // 타입
+	CreateDate    string  // 생성일
+	Product       string  // 제품명
+	ProductStatus string  // 상태
+	ProductUser   string  // 사용자
+	Sn            string  // 시리얼넘버
+	Price         float64 // 가격
+	PurchaseDate  string  // 구매일
+	MonetaryUnit  string  // 가격단위
+	Description   string  // 설명
 }
 
 // Sw 는 소프트웨어를 관리하기 위한 자료구조이다.
@@ -31,7 +30,7 @@ type Account struct {
 	Typ                  string  // 타입
 	CreateDate           string  // 생성일
 	Product              string  // 제품명
-	URL                  string  // 주소
+	ProductURL           string  // 주소
 	ID                   string  // ID
 	Password             string  // 패스워드
 	MonthMaintenanceCost float64 // 월유지비
