@@ -27,12 +27,12 @@ type Sw struct {
 
 // Account 는 공용계정을 관리하기 위한 자료구조이다.
 type Account struct {
-	Typ                  string // 타입
-	PurchaseDate         string // 구매일
-	Product              string // 제품명
-	URL                  string // 주소
-	ID                   string
-	Password             string
+	Typ                  string  // 타입
+	PurchaseDate         string  // 구매일
+	Product              string  // 제품명
+	URL                  string  // 주소
+	ID                   string  // ID
+	Password             string  // 패스워드
 	MonthMaintenanceCost float64 // 월유지비
 	MonetaryUnit         string  // 가격단위
 	Description          string  // 설명
