@@ -26,7 +26,6 @@ func addHw(db dynamodb.DynamoDB) {
 		Description:    *flagDescription,
 		MonthlyPayment: *flagMonthlyPayment,
 	}
-	fmt.Println(*flagAdd)
 
 	// 데이터 저장
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
@@ -44,6 +43,6 @@ func addHw(db dynamodb.DynamoDB) {
 		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
 		os.Exit(1)
 	}
-	fmt.Println("add item")
+	fmt.Println("add item:")
 	fmt.Println(item)
 }
