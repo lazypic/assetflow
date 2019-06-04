@@ -122,7 +122,7 @@ type Other struct {
 	MonthlyPayment bool   // 월결제
 }
 
-func (h Hw) String() string {
+func (hw Hw) String() string {
 	return fmt.Sprintf(`
 	Type: %s
 	CreateDate: %s
@@ -133,15 +133,15 @@ func (h Hw) String() string {
 	PurchaseDate: %s
 	Description: %s
 	`,
-		h.Typ,
-		h.CreateDate,
-		h.Product,
-		h.ProductStatus,
-		h.ProductUser,
-		h.Cost,
-		h.MonetaryUnit,
-		h.MonthlyPayment,
-		h.PurchaseDate,
-		h.Description,
+		hw.Typ,
+		hw.CreateDate,
+		hw.Product,
+		hw.ProductStatus,
+		hw.ProductUser,
+		hw.Cost,
+		hw.MonetaryUnit,
+		hw.MonthlyPayment,
+		hw.PurchaseDate,
+		hw.Description,
 	)
 }
