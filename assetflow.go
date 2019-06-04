@@ -84,6 +84,8 @@ func main() {
 		os.Exit(0)
 	}
 
+	// type 체크 필요함.
+	// 모드 체크 필요함
 	switch *flagAdd {
 	case "hw":
 		addHw(*db)
