@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 var (
@@ -52,7 +51,7 @@ func usage() {
 	os.Exit(2)
 
 	/*
-		assetflow -add hw -user woong -cost 6500000 -product imac
+		assetflow -add hw -user woong -cost 1400000 -product lenovoX1 -description 리눅스테스트
 		assetflow -add sw -cost 6500000 -product hwp
 		assetflow -add account -url https://test.com -id woong -pw test -cost 6500000 -monthlypayment
 		assetflow -add realestate -cost 6500000 -address 주소 -monthlypayment
@@ -84,43 +83,9 @@ func main() {
 		fmt.Println("Please try again in one minute.")
 		os.Exit(0)
 	}
-	// 데이터가 존재하는지 체크
-	if hasItem(*db, *flagTable, *flagAdd, *flagCreateDate) {
-		fmt.Println("The data already exists. Can not add data.")
-		os.Exit(0)
-	}
-	if *flagAdd == "hw" {
-		item := Hw{
-			Typ:            *flagAdd,
-			CreateDate:     *flagCreateDate,
-			Product:        *flagProduct,
-			ProductStatus:  *flagProductStatus,
-			ProductUser:    *flagUser,
-			MonetaryUnit:   *flagMonetaryUnit,
-			Cost:           *flagCost,
-			PurchaseDate:   *flagPurchaseDate,
-			Description:    *flagDescription,
-			MonthlyPayment: *flagMonthlyPayment,
-		}
-		fmt.Println(*flagAdd)
 
-		// 데이터 저장
-		dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s\n", err.Error())
-			os.Exit(1)
-		}
-
-		data := &dynamodb.PutItemInput{
-			Item:      dynamodbJSON,
-			TableName: aws.String(*flagTable),
-		}
-		_, err = db.PutItem(data)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s\n", err.Error())
-			os.Exit(1)
-		}
-		fmt.Println("add item")
-		fmt.Println(item)
+	switch *flagAdd {
+	case "hw":
+		addHw(*db)
 	}
 }
