@@ -11,9 +11,9 @@ var (
 	// db setting
 
 	// mode and partition key
-	flagAdd    = flag.String("add", "", "add mode")
-	flagUpdate = flag.String("update", "", "update mode")
-	flagRm     = flag.String("rm", "", "rm mode")
+	flagAdd    = flag.String("add", "", "type addition mode")
+	flagUpdate = flag.String("update", "", "type update mode")
+	flagRm     = flag.String("rm", "", "type remove mode")
 
 	// sort key
 	flagCreateDate = flag.String("createdate", "", "item create date")
@@ -33,6 +33,7 @@ var (
 	flagContractDate   = flag.String("contractdate", "", "contract date")
 	flagAddress        = flag.String("address", "", "address")
 	flagMonthlyPayment = flag.Bool("monthlypayment", false, "monthly payment")
+	flagYearlyPayment  = flag.Bool("yearlypayment", false, "yearly payment")
 )
 
 func usage() {
