@@ -5,34 +5,37 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 var (
+	now = time.Now()
 	// db setting
 	flagRegion  = flag.String("region", "ap-northeast-2", "AWS region name")
 	flagProfile = flag.String("profile", "lazypic", "AWS Credentials profile name")
 	flagTable   = flag.String("table", "assetflow", "AWS Dynamodb table name")
 
 	// mode and partition key
-	flagAdd    = flag.String("add", "", "type addition mode")
-	flagUpdate = flag.String("update", "", "type update mode")
-	flagRm     = flag.String("rm", "", "type remove mode")
+	flagAdd = flag.String("add", "", "type addition mode")
+	//flagUpdate = flag.String("update", "", "type update mode")
+	//flagRm     = flag.String("rm", "", "type remove mode")
 
 	// sort key
-	flagCreateDate = flag.String("createdate", "", "item create date")
+	flagCreateDate = flag.String("createdate", now.Format(time.RFC3339), "item create date")
 
 	// attributes
 	flagProduct        = flag.String("product", "", "product name")
-	flagProductStatus  = flag.String("productstatus", "", "product status")
+	flagProductStatus  = flag.String("productstatus", "normal", "product status")
 	flagUser           = flag.String("user", "", "product user name")
 	flagSn             = flag.String("sn", "", "product serial number")
 	flagCost           = flag.Float64("cost", 0.0, "product cost")
 	flagMonetaryUnit   = flag.String("monetaryunit", "KRW", "price monetary unit")
-	flagPurchaseDate   = flag.String("purchasedate", "", "product purchase date")
+	flagPurchaseDate   = flag.String("purchasedate", now.Format(time.RFC3339), "product purchase date")
 	flagDescription    = flag.String("description", "", "description")
 	flagURL            = flag.String("url", "", "url")
 	flagID             = flag.String("id", "", "id")
@@ -81,8 +84,44 @@ func main() {
 		fmt.Println("Please try again in one minute.")
 		os.Exit(0)
 	}
-
-	if *flagAdd != "" {
+	// 데이터가 존재하는지 체크
+	if hasItem(*db, *flagTable, *flagAdd, *flagCreateDate) {
+		fmt.Println("The data already exists. Can not add data.")
+		os.Exit(0)
+	}
+	if *flagAdd == "hw" {
+		item := Hw{
+			Typ:            *flagAdd,
+			CreateDate:     *flagCreateDate,
+			Product:        *flagProduct,
+			ProductStatus:  *flagProductStatus,
+			ProductUser:    *flagUser,
+			Sn:             *flagSn,
+			MonetaryUnit:   *flagMonetaryUnit,
+			Cost:           *flagCost,
+			PurchaseDate:   *flagPurchaseDate,
+			Description:    *flagDescription,
+			MonthlyPayment: *flagMonthlyPayment,
+		}
 		fmt.Println(*flagAdd)
+
+		// 데이터 저장
+		dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+			os.Exit(1)
+		}
+
+		data := &dynamodb.PutItemInput{
+			Item:      dynamodbJSON,
+			TableName: aws.String(*flagTable),
+		}
+		_, err = db.PutItem(data)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+			os.Exit(1)
+		}
+		fmt.Println("add item")
+		fmt.Println(item)
 	}
 }

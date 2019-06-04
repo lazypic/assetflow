@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Hw 는 데스크탑, 노트북등의 하드웨어 관리를 위한 자료구조이다.
 type Hw struct {
 	Typ            string  // 타입
@@ -64,4 +66,30 @@ type Other struct {
 	MonetaryUnit   string  // 가격단위
 	Description    string  // 설명
 	MonthlyPayment bool    // 월결제
+}
+
+func (h Hw) String() string {
+	return fmt.Sprintf(`
+	Type: %s
+	CreateDate: %s
+	Product: %s(%s)
+	User: %s
+	Sn: %s
+	Cost: %.0f %s
+	MonthlyPayment: %t
+	PurchaseDate: %s
+	Description: %s
+	`,
+		h.Typ,
+		h.CreateDate,
+		h.Product,
+		h.ProductStatus,
+		h.ProductUser,
+		h.Sn,
+		h.Cost,
+		h.MonetaryUnit,
+		h.MonthlyPayment,
+		h.PurchaseDate,
+		h.Description,
+	)
 }

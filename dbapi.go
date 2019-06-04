@@ -9,25 +9,30 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
+const (
+	partitionKey = "Typ"
+	sortKey      = "CreateDate"
+)
+
 func tableStruct(tableName string) *dynamodb.CreateTableInput {
 	return &dynamodb.CreateTableInput{
 		AttributeDefinitions: []*dynamodb.AttributeDefinition{
 			{
-				AttributeName: aws.String("Typ"),
+				AttributeName: aws.String(partitionKey),
 				AttributeType: aws.String("S"),
 			},
 			{
-				AttributeName: aws.String("CreateDate"),
+				AttributeName: aws.String(sortKey),
 				AttributeType: aws.String("S"),
 			},
 		},
 		KeySchema: []*dynamodb.KeySchemaElement{
 			{
-				AttributeName: aws.String("Typ"),
+				AttributeName: aws.String(partitionKey),
 				KeyType:       aws.String("HASH"),
 			},
 			{
-				AttributeName: aws.String("CreateDate"),
+				AttributeName: aws.String(sortKey),
 				KeyType:       aws.String("RANGE"),
 			},
 		},
@@ -74,4 +79,27 @@ func validTable(db dynamodb.DynamoDB, tableName string) bool {
 		}
 	}
 	return isTableName
+}
+
+func hasItem(db dynamodb.DynamoDB, tableName string, primarykey string, sortkey string) bool {
+	input := &dynamodb.GetItemInput{
+		TableName: aws.String(tableName),
+		Key: map[string]*dynamodb.AttributeValue{
+			partitionKey: {
+				S: aws.String(primarykey),
+			},
+			sortKey: {
+				S: aws.String(sortkey),
+			},
+		},
+	}
+	result, err := db.GetItem(input)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+		return false
+	}
+	if result.Item == nil {
+		return false
+	}
+	return true
 }
