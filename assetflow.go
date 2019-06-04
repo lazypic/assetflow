@@ -96,7 +96,6 @@ func main() {
 			Product:        *flagProduct,
 			ProductStatus:  *flagProductStatus,
 			ProductUser:    *flagUser,
-			Sn:             *flagSn,
 			MonetaryUnit:   *flagMonetaryUnit,
 			Cost:           *flagCost,
 			PurchaseDate:   *flagPurchaseDate,

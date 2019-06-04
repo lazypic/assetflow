@@ -9,7 +9,6 @@ type Hw struct {
 	Product        string // 제품명
 	ProductStatus  string // 상태
 	ProductUser    string // 사용자
-	Sn             string // 시리얼넘버
 	Cost           int64  // 가격
 	PurchaseDate   string // 구매일
 	MonetaryUnit   string // 가격단위
@@ -74,7 +73,6 @@ func (h Hw) String() string {
 	CreateDate: %s
 	Product: %s(%s)
 	User: %s
-	Sn: %s
 	Cost: %d %s
 	MonthlyPayment: %t
 	PurchaseDate: %s
@@ -85,7 +83,6 @@ func (h Hw) String() string {
 		h.Product,
 		h.ProductStatus,
 		h.ProductUser,
-		h.Sn,
 		h.Cost,
 		h.MonetaryUnit,
 		h.MonthlyPayment,
