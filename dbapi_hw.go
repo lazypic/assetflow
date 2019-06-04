@@ -9,11 +9,11 @@ import (
 )
 
 func addHw(db dynamodb.DynamoDB) error {
-	b, err := hasItem(db, *flagTable, *flagAdd, *flagCreateDate)
+	hasBool, err := hasItem(db, *flagTable, *flagAdd, *flagCreateDate)
 	if err != nil {
 		return err
 	}
-	if b {
+	if hasBool {
 		return errors.New("The data already exists. Can not add data")
 	}
 	item := Hw{
@@ -29,7 +29,6 @@ func addHw(db dynamodb.DynamoDB) error {
 		MonthlyPayment: *flagMonthlyPayment,
 	}
 
-	// 데이터 저장
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
 	if err != nil {
 		return err
