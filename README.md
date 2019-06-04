@@ -4,3 +4,6 @@
 그룹을 운용하면서 필요시 자산을 계산하기 위해서 사용합니다.
 
 현재는 명령어를 사용하면서 기능을 추가, 수정하는 단계입니다.
+
+### Reference
+- https://github.com/Rhymond/go-money
