@@ -10,14 +10,13 @@ import (
 var (
 	// db setting
 
-	// mode
-	flagAdd    = flag.Bool("add", false, "add mode")
-	flagUpdate = flag.Bool("update", false, "update mode")
-	flagRm     = flag.Bool("rm", false, "rm mode")
+	// mode and partition key
+	flagAdd    = flag.String("add", "", "add mode")
+	flagUpdate = flag.String("update", "", "update mode")
+	flagRm     = flag.String("rm", "", "rm mode")
 
-	// key
-	flagType       = flag.String("type", "", "item type")              // partition key
-	flagCreateDate = flag.String("createdate", "", "item create date") // sort key
+	// sort key
+	flagCreateDate = flag.String("createdate", "", "item create date")
 
 	// attributes
 	flagProduct        = flag.String("product", "", "product name")
@@ -42,11 +41,11 @@ func usage() {
 	os.Exit(2)
 
 	/*
-		assetflow -add -type hw -user woong -cost 6500000 -product imac
-		assetflow -add -type sw -cost 6500000 -product hwp
-		assetflow -add -type account -url https://test.com -id woong -pw test -cost 6500000 -monthlypayment
-		assetflow -add -type realestate -cost 6500000 -address 주소 -monthlypayment
-		assetflow -add -type other -product 안마의자 -cost 35000 -monthlypayment
+		assetflow -add hw -user woong -cost 6500000 -product imac
+		assetflow -add sw -cost 6500000 -product hwp
+		assetflow -add account -url https://test.com -id woong -pw test -cost 6500000 -monthlypayment
+		assetflow -add realestate -cost 6500000 -address 주소 -monthlypayment
+		assetflow -add other -product 안마의자 -cost 35000 -monthlypayment
 	*/
 }
 
@@ -57,5 +56,4 @@ func main() {
 	flag.Parse()
 
 	fmt.Println(*flagAdd)
-	fmt.Println(*flagType)
 }
