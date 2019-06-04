@@ -33,7 +33,7 @@ var (
 	flagProductStatus  = flag.String("productstatus", "normal", "product status")
 	flagUser           = flag.String("user", "", "product user name")
 	flagSn             = flag.String("sn", "", "product serial number")
-	flagCost           = flag.Float64("cost", 0.0, "product cost")
+	flagCost           = flag.Int64("cost", 0, "product cost")
 	flagMonetaryUnit   = flag.String("monetaryunit", "KRW", "price monetary unit")
 	flagPurchaseDate   = flag.String("purchasedate", now.Format(time.RFC3339), "product purchase date")
 	flagDescription    = flag.String("description", "", "description")
