@@ -5,10 +5,17 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 var (
 	// db setting
+	flagRegion  = flag.String("region", "ap-northeast-2", "AWS region name")
+	flagProfile = flag.String("profile", "lazypic", "AWS Credentials profile name")
+	flagTable   = flag.String("table", "assetflow", "AWS Dynamodb table name")
 
 	// mode and partition key
 	flagAdd    = flag.String("add", "", "type addition mode")
@@ -56,5 +63,26 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 
-	fmt.Println(*flagAdd)
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+		Config:            aws.Config{Region: aws.String(*flagRegion)},
+		Profile:           *flagProfile,
+	}))
+	db := dynamodb.New(sess)
+
+	// 테이블이 존재하는지 점검하고 없다면 테이블을 생성한다.
+	if !validTable(*db, *flagTable) {
+		_, err := db.CreateTable(tableStruct(*flagTable))
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("Created table:", *flagTable)
+		fmt.Println("Please try again in one minute.")
+		os.Exit(0)
+	}
+
+	if *flagAdd != "" {
+		fmt.Println(*flagAdd)
+	}
 }
