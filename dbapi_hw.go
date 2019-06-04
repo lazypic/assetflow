@@ -1,18 +1,20 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"errors"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-func addHw(db dynamodb.DynamoDB) {
-	if hasItem(db, *flagTable, *flagAdd, *flagCreateDate) {
-		fmt.Fprint(os.Stderr, "The data already exists. Can not add data.\n")
-		os.Exit(1)
+func addHw(db dynamodb.DynamoDB) error {
+	b, err := hasItem(db, *flagTable, *flagAdd, *flagCreateDate)
+	if err != nil {
+		return err
+	}
+	if b {
+		return errors.New("The data already exists. Can not add data")
 	}
 	item := Hw{
 		Typ:            *flagAdd,
@@ -30,8 +32,7 @@ func addHw(db dynamodb.DynamoDB) {
 	// 데이터 저장
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
-		os.Exit(1)
+		return err
 	}
 
 	data := &dynamodb.PutItemInput{
@@ -40,9 +41,7 @@ func addHw(db dynamodb.DynamoDB) {
 	}
 	_, err = db.PutItem(data)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
-		os.Exit(1)
+		return err
 	}
-	fmt.Println("add item:")
-	fmt.Println(item)
+	return nil
 }

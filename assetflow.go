@@ -88,6 +88,10 @@ func main() {
 	// 모드 체크 필요함
 	switch *flagAdd {
 	case "hw":
-		addHw(*db)
+		err := addHw(*db)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%v\n", err)
+			os.Exit(1)
+		}
 	}
 }

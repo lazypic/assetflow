@@ -81,7 +81,7 @@ func validTable(db dynamodb.DynamoDB, tableName string) bool {
 	return isTableName
 }
 
-func hasItem(db dynamodb.DynamoDB, tableName string, primarykey string, sortkey string) bool {
+func hasItem(db dynamodb.DynamoDB, tableName string, primarykey string, sortkey string) (bool, error) {
 	input := &dynamodb.GetItemInput{
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -95,11 +95,10 @@ func hasItem(db dynamodb.DynamoDB, tableName string, primarykey string, sortkey 
 	}
 	result, err := db.GetItem(input)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
-		return false
+		return false, err
 	}
 	if result.Item == nil {
-		return false
+		return false, nil
 	}
-	return true
+	return true, nil
 }
