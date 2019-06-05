@@ -42,7 +42,7 @@ type Camera struct {
 	Description   string // 설명
 }
 
-// Lens 는 카메라 장비 관리를 위한 자료구조이다.
+// Lens 는 카메라 렌즈 관리를 위한 자료구조이다.
 type Lens struct {
 	Typ           string // 타입
 	CreateDate    string // 생성일
@@ -54,7 +54,7 @@ type Lens struct {
 	MonetaryUnit  string // 가격단위
 	Description   string // 설명
 	Sn            string // 시리얼넘버
-	Angle         string // 화각
+	FocalLength   string // 화각
 }
 
 // Rig 는 카메라 리그장비 관리를 위한 자료구조이다.
