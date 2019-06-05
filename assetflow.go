@@ -43,6 +43,7 @@ var (
 	flagAddress        = flag.String("address", "", "address")
 	flagMonthlyPayment = flag.Bool("monthlypayment", false, "monthly payment")
 	flagYearlyPayment  = flag.Bool("yearlypayment", false, "yearly payment")
+	flagFocalLength    = flag.String("focallength", "", "lens focal length")
 )
 
 func usage() {
@@ -101,6 +102,12 @@ func main() {
 		}
 	case "sound":
 		err := addCamera(*db)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%v\n", err)
+			os.Exit(1)
+		}
+	case "lens":
+		err := addLens(*db)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%v\n", err)
 			os.Exit(1)

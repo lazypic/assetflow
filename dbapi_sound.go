@@ -16,7 +16,7 @@ func addSound(db dynamodb.DynamoDB) error {
 	if hasBool {
 		return errors.New("The data already exists. Can not add data")
 	}
-	item := Hw{
+	item := Sound{
 		Typ:           *flagAdd,
 		CreateDate:    *flagCreateDate,
 		Product:       *flagProduct,

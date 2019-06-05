@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-func addCamera(db dynamodb.DynamoDB) error {
+func addLens(db dynamodb.DynamoDB) error {
 	hasBool, err := hasItem(db, *flagTable, *flagAdd, *flagCreateDate)
 	if err != nil {
 		return err
@@ -16,7 +16,7 @@ func addCamera(db dynamodb.DynamoDB) error {
 	if hasBool {
 		return errors.New("The data already exists. Can not add data")
 	}
-	item := Camera{
+	item := Lens{
 		Typ:           *flagAdd,
 		CreateDate:    *flagCreateDate,
 		Product:       *flagProduct,
@@ -26,6 +26,8 @@ func addCamera(db dynamodb.DynamoDB) error {
 		Cost:          *flagCost,
 		PurchaseDate:  *flagPurchaseDate,
 		Description:   *flagDescription,
+		Sn: *flagSn,
+		FocalLength: *flagFocalLength,
 	}
 
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
