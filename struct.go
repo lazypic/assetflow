@@ -81,6 +81,7 @@ type Sw struct {
 	MonetaryUnit   string // 가격단위
 	Description    string // 설명
 	MonthlyPayment bool   // 월결제
+	MacAdress      string // 맥어드레스, 간혹 특정소프트웨어는 맥어드레스가 필요하다.
 }
 
 // Account 는 공용계정을 관리하기 위한 자료구조이다.

@@ -31,5 +31,19 @@ $ assetflow -add lens -user lazypic -cost 0 -product "Anam Nikon AF NIKKOR" -des
 $ assetflow -add other -user lazypic -cost 0 -product "MATIN 52mm UV" -description "lensfilter,기증"
 ```
 
+#### 소프트웨어 추가
+간혹 특정 소프트웨어는 시리얼넘버, 맥어드레스 관리도 필요합니다.
+
+```bash
+$ assetflow -add sw -product "Productname" -sn "XXXXX-XXXXX-XXXXX-XXXXX" -macaddress "68:3a:3a:14:59:b6"
+```
+
+#### 계정관리
+공용으로 사용하는 웹서비스 계정관리
+
+```bash
+$ assetflow -add acount -id "id" -pw "password" -url "https://url"
+```
+
 ### Reference
 - https://github.com/Rhymond/go-money
