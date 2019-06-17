@@ -116,6 +116,8 @@ type Other struct {
 	CreateDate     string // 생성일
 	PurchaseDate   string // 구매일
 	Product        string // 제품명
+	ProductStatus  string // 상태
+	ProductUser    string // 사용자
 	Cost           int64  // 유지비
 	MonetaryUnit   string // 가격단위
 	Description    string // 설명

@@ -13,5 +13,17 @@
 $ assetflow -add camera -user lazypic -cost 150000 -product "Nikon F90X" -description "기증"
 ```
 
+#### 렌즈 추가
+
+```bash
+$ assetflow -add lens -user lazypic -cost 0 -product "Anam Nikon AF NIKKOR" -description "기증" -focallength "28-70mm" -sn 7005744
+```
+
+#### 렌즈필터 추가
+
+```bash
+$ assetflow -add other -user lazypic -cost 0 -product "MATIN 52mm UV" -description "lensfilter,기증"
+```
+
 ### Reference
 - https://github.com/Rhymond/go-money
