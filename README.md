@@ -7,6 +7,12 @@
 
 # 사용법
 
+#### 하드웨어 추가
+
+```bash
+$ assetflow -add hw -user lazypic -cost 2100000 -product "imac" -macadress "68:3a:3a:14:59:b6"
+```
+
 #### 카메라 추가
 
 ```bash
