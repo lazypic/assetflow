@@ -5,5 +5,13 @@
 
 현재는 명령어를 사용하면서 기능을 추가, 수정하는 단계입니다.
 
+# 사용법
+
+#### 카메라 추가
+
+```bash
+$ assetflow -add camera -user lazypic -cost 150000 -product "Nikon F90X" -description "기증"
+```
+
 ### Reference
 - https://github.com/Rhymond/go-money
