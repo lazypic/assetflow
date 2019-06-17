@@ -13,6 +13,12 @@
 $ assetflow -add camera -user lazypic -cost 150000 -product "Nikon F90X" -description "기증"
 ```
 
+#### Rig 추가
+
+```bash
+$ assetflow -add rig -user lazypic -cost 380000 -product "Sirui t-025x" -description "tripod"
+```
+
 #### 렌즈 추가
 
 ```bash

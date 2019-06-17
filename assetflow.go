@@ -100,6 +100,12 @@ func main() {
 			fmt.Fprintf(os.Stderr, "%v\n", err)
 			os.Exit(1)
 		}
+	case "rig":
+		err := addRig(*db)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%v\n", err)
+			os.Exit(1)
+		}
 	case "sound":
 		err := addSound(*db)
 		if err != nil {
