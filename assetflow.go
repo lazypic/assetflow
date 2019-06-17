@@ -101,7 +101,7 @@ func main() {
 			os.Exit(1)
 		}
 	case "sound":
-		err := addCamera(*db)
+		err := addSound(*db)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%v\n", err)
 			os.Exit(1)
