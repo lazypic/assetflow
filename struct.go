@@ -139,8 +139,8 @@ type Other struct {
 	MonthlyPayment bool   // 월결제
 }
 
-// Depreciation 메소드 Hw 자료구조의 감가상각을 계산한다.
-func (hw Hw) Depreciation() int64 {
+// Depreciation 메소드 Hw 자료구조의 감가상각누계액 모델
+func (hw Hw) Depreciation(model string) int64 {
 	// 월결제 모델이라면 감가상각비에 넣지 않는다.
 	if hw.MonthlyPayment {
 		return 0
@@ -157,7 +157,17 @@ func (hw Hw) Depreciation() int64 {
 	if m > LimitAssetMonth {
 		return 0
 	}
-	return (60*hw.Cost - int64(m)*hw.Cost) / int64(LimitAssetMonth)
+	switch model {
+	case "year":
+		// 감가상각누계액
+		return hw.Cost - (hw.Cost * (int64(m) / 12) / 5)
+	case "month":
+		// 월별 세부 감가상각액
+		return (60*hw.Cost - int64(m)*hw.Cost) / int64(LimitAssetMonth)
+	default:
+		// 기본적으로 연도별로 감가상각을 계산한다.
+		return hw.Cost - (hw.Cost * (int64(m) / 12) / 5)
+	}
 }
 
 func (hw Hw) String() string {
@@ -170,6 +180,7 @@ func (hw Hw) String() string {
 	MonthlyPayment: %t
 	PurchaseDate: %s
 	Description: %s
+	Depreciation: %d
 	`,
 		hw.Typ,
 		hw.CreateDate,
@@ -181,6 +192,7 @@ func (hw Hw) String() string {
 		hw.MonthlyPayment,
 		hw.PurchaseDate,
 		hw.Description,
+		hw.Depreciation("year"),
 	)
 }
 
