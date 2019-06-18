@@ -10,6 +10,8 @@ const (
 	LimitKRW = 500000
 	// LimitAssetMonth 자산보관 최대월 60개월, 5년
 	LimitAssetMonth = 60
+	// LimitAssetMonth 자산보관 최대월 240개월, 20년
+	LimitRealEstateMonth = 240
 )
 
 // Hw 는 데스크탑, 노트북등의 하드웨어 관리를 위한 자료구조이다.
