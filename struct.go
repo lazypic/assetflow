@@ -10,7 +10,7 @@ const (
 	LimitKRW = 500000
 	// LimitAssetMonth 자산보관 최대월 60개월, 5년
 	LimitAssetMonth = 60
-	// LimitAssetMonth 자산보관 최대월 240개월, 20년~40년
+	// LimitAssetMonth 자산보관 최대월 240개월, 20년(240)~40년(480)
 	LimitRealEstateMonth = 240
 )
 
