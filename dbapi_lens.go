@@ -26,8 +26,8 @@ func addLens(db dynamodb.DynamoDB) error {
 		Cost:          *flagCost,
 		PurchaseDate:  *flagPurchaseDate,
 		Description:   *flagDescription,
-		Sn: *flagSn,
-		FocalLength: *flagFocalLength,
+		Sn:            *flagSn,
+		FocalLength:   *flagFocalLength,
 	}
 
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)

@@ -25,6 +25,7 @@ func addSw(db dynamodb.DynamoDB) error {
 		Description:    *flagDescription,
 		MonthlyPayment: *flagMonthlyPayment,
 		MacAdress:      *flagMacAddress,
+		Sn:             *flagSn,
 	}
 
 	dynamodbJSON, err := dynamodbattribute.MarshalMap(item)
