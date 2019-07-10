@@ -49,16 +49,12 @@ var (
 
 func usage() {
 	fmt.Fprintf(os.Stderr, "usage:\n")
-	fmt.Fprintf(os.Stderr, "\tassetflow -add ...")
+	fmt.Fprintf(os.Stderr, "\tassetflow -add hw -user woong -cost 1400000 -product macbook -description macOS개발머신\n")
+	fmt.Fprintf(os.Stderr, "\tassetflow -add sw -user woong -cost 65000 -product hwp2014\n")
+	fmt.Fprintf(os.Stderr, "\tassetflow -add account -url https://test.com -id woong -pw pass -cost 5000 -monthlypayment\n")
+	fmt.Fprintf(os.Stderr, "\tassetflow -add hw -user woong -cost 1400000 -product macbook -description macOS개발머신\n")
+	fmt.Fprintf(os.Stderr, "\tassetflow -add hw -user woong -cost 1400000 -product macbook -description macOS개발머신\n")
 	os.Exit(2)
-
-	/*
-		assetflow -add hw -user woong -cost 1400000 -product lenovoX1 -description 리눅스테스트
-		assetflow -add sw -cost 6500000 -product hwp
-		assetflow -add account -url https://test.com -id woong -pw test -cost 6500000 -monthlypayment
-		assetflow -add realestate -cost 6500000 -address 주소 -monthlypayment
-		assetflow -add other -product 안마의자 -cost 35000 -monthlypayment
-	*/
 }
 
 func main() {
