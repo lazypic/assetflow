@@ -22,7 +22,7 @@ func addAccount(db dynamodb.DynamoDB) error {
 		Product:        *flagProduct,
 		ProductURL:     *flagURL,
 		ID:             *flagID,
-		Password:       *flagPassword,
+		Password:       *flagPW,
 		MonetaryUnit:   *flagMonetaryUnit,
 		Cost:           *flagCost,
 		PurchaseDate:   *flagPurchaseDate,
