@@ -38,7 +38,7 @@ var (
 	flagDescription    = flag.String("description", "", "description")
 	flagURL            = flag.String("url", "https://", "url")
 	flagID             = flag.String("id", "_", "id")
-	flagPassword       = flag.String("password", "_", "password")
+	flagPassword       = flag.String("pw", "_", "password")
 	flagContractDate   = flag.String("contractdate", "_", "contract date")
 	flagAddress        = flag.String("address", "_", "address")
 	flagMonthlyPayment = flag.Bool("monthlypayment", false, "monthly payment")
