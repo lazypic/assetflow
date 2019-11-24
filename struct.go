@@ -10,7 +10,7 @@ const (
 	LimitKRW = 500000
 	// LimitAssetMonth 자산보관 최대월 60개월, 5년
 	LimitAssetMonth = 60
-	// LimitAssetMonth 자산보관 최대월 240개월, 20년(240)~40년(480)
+	// LimitRealEstateMonth 자산보관 최대월 240개월, 20년(240)~40년(480)
 	LimitRealEstateMonth = 240
 )
 
@@ -97,7 +97,7 @@ type Sw struct {
 	MonetaryUnit   string // 가격단위
 	Description    string // 설명
 	MonthlyPayment bool   // 월결제
-	MacAdress      string // 맥어드레스, 간혹 특정소프트웨어는 맥어드레스가 필요하다.
+	MacAddress     string // 맥어드레스, 간혹 특정소프트웨어는 맥어드레스가 필요하다.
 }
 
 // Account 는 공용계정을 관리하기 위한 자료구조이다.

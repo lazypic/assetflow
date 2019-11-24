@@ -1,4 +1,6 @@
-# assetflow
+# Assetflow
+![travisCI](https://secure.travis-ci.org/lazypic/assetflow.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lazypic/assetflow)](https://goreportcard.com/report/github.com/lazypic/assetflow)
 
 하드웨어, 소프트웨어, 카메라, 리그, 조명, 사운드장비, 공용계정, 부동산을 관리하기 위한 Back-end commandline tool.
 그룹을 운용하면서 필요시 자산을 계산하기 위해서 사용합니다.
@@ -6,7 +8,7 @@
 Lazypic은 모든 물건은 감가상각비가 끝나더라도 수명을 다 할때까지 깨끗이 사용하는것을 원칙으로 합니다.
 또한 아무리 오래된 장비라더라도 충분히 테스트 장비로서 가치가 있습니다.
 
-에셋은 AWS 관리자만 콘솔에서 삭제할 수 있습니다.
+에셋은 AWS 관리자만 AWS 콘솔에서 삭제할 수 있습니다.
 
 # 사용법
 

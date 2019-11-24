@@ -24,7 +24,7 @@ func addSw(db dynamodb.DynamoDB) error {
 		Cost:           *flagCost,
 		Description:    *flagDescription,
 		MonthlyPayment: *flagMonthlyPayment,
-		MacAdress:      *flagMacAddress,
+		MacAddress:     *flagMacAddress,
 		Sn:             *flagSn,
 	}
 

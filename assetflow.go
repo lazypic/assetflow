@@ -44,7 +44,7 @@ var (
 	flagMonthlyPayment = flag.Bool("monthlypayment", false, "monthly payment")
 	flagYearlyPayment  = flag.Bool("yearlypayment", false, "yearly payment")
 	flagFocalLength    = flag.String("focallength", "00mm", "lens focal length")
-	flagMacAddress     = flag.String("macadress", "00:00:00:00:00", "mac address")
+	flagMacAddress     = flag.String("macaddress", "00:00:00:00:00", "mac address")
 )
 
 func usage() {
