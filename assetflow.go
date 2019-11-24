@@ -35,7 +35,7 @@ var (
 	flagCost           = flag.Int64("cost", 0, "product cost")
 	flagMonetaryUnit   = flag.String("monetaryunit", "KRW", "price monetary unit")
 	flagPurchaseDate   = flag.String("purchasedate", now.Format(time.RFC3339), "product purchase date")
-	flagDescription    = flag.String("description", "", "description")
+	flagDescription    = flag.String("description", "_", "description")
 	flagURL            = flag.String("url", "https://", "url")
 	flagID             = flag.String("id", "_", "id")
 	flagPW             = flag.String("pw", "_", "password")
